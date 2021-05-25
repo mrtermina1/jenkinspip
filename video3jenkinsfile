@@ -1,0 +1,29 @@
+pipeline{
+agent any
+stages{
+    stage('First'){
+        steps{
+            sh 'pwd'
+            sh 'ls'
+            sh 'echo "Hello, this is a file" >> myfile.txt'
+            sh 'ls'
+        }
+    }
+    stage('Second'){
+        steps{
+            sh 'cat myfile.txt'
+        }
+    }
+    stage('Third'){
+        steps{
+            sh """
+            ls
+            pwd
+            cat myfile.txt
+            rm myfile.txt
+            ls
+            """
+        }
+    }
+}
+}
